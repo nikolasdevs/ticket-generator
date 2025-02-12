@@ -9,8 +9,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #02191d;
+    --foreground: #fafafa;
+    --primary: #24a0b5;
+    --secondary: #0e464f;
+    --secondary_light: #197686;
+    --header: #05252c;
+    --ticket_box_background: #08252b;
+    --ticket_box: #041e23;
+    --ticket_box_border: #07373f;
+    --ticket_select_box: #05222b;
+    --gray: #0a0c11;
   }
 }
 
@@ -18,4 +27,12 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-group {
+  @apply flex flex-col gap-2;
+}
+
+input {
+  @apply w-full p-3 border border-ticket_box_border rounded-xl bg-transparent outline-none;
 }
