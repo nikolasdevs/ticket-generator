@@ -31,7 +31,6 @@ const TicketBooked = () => {
   const handleResetIndexedDB = async () => {
     await clearFormData();
     await clearTicketData();
-    console.log("IndexedDB has been reset.");
   };
 
   useEffect(() => {
@@ -77,7 +76,7 @@ const TicketBooked = () => {
       } catch (error) {
         console.error("Error generating ticket image:", error);
       }
-    }, 300); // 300ms delay
+    }, 300);
   };
   return (
     <div className=" px-3 md:w-full w-full pb-4 mt-[10rem] ">

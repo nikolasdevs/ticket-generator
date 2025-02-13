@@ -164,8 +164,8 @@ const AttendeeDetails = () => {
                         <Image
                           src={uploadIcon}
                           alt="Change Image"
-                          height={48}
-                          width={48}
+                          height={32}
+                          width={32}
                           className="opacity-80 hover:opacity-100 transition-opacity duration-200"
                         />
                         <p className="w-40">Drag & drop or click to upload</p>
