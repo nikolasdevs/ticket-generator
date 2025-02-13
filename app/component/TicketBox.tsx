@@ -1,4 +1,5 @@
 "use client";
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -43,6 +44,13 @@ const TicketBox = () => {
       router.push("/attendee-details");
     } else {
     }
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelect = (num: number) => {
+    setAttendeeCount(num);
+    setIsOpen(false);
   };
 
   return (
@@ -126,17 +134,30 @@ const TicketBox = () => {
 
           <div className="select-type w-full flex flex-col gap-2">
             <p className="w-full"> Number of Tickets</p>
-            <select
-              className="w-full bg-ticket_select flex  justify-between  items-center gap-2 p-3 border border-ticket_box_border rounded-xl outline-none"
-              value={attendeeCount}
-              onChange={(e) => setAttendeeCount(Number(e.target.value))}
-            >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
-            </select>
+
+            <div className="relative w-full">
+              <div
+                className="w-full bg-ticket_select flex justify-between items-center p-4 border border-ticket_box_border rounded-xl cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {attendeeCount}
+                <ChevronDown className="w-6 h-6" />
+              </div>
+
+              {isOpen && (
+                <ul className="absolute left-0 top-full mt-2 w-full bg-ticket_select border border-ticket_box_border rounded-xl shadow-md z-50">
+                  {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
+                    <li
+                      key={num}
+                      className="p-3 hover:bg-ticket_box_border rounded-lg cursor-pointer"
+                      onClick={() => handleSelect(num)}
+                    >
+                      {num}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           <div className="w-full sm:h-12 sm:bg-ticket_select flex flex-col sm:flex-row  justify-between  items-center sm:gap-8 gap-4 sm:px-12 sm:border sm:border-ticket_box_border rounded-3xl ">
