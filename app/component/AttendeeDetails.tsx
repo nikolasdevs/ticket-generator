@@ -10,7 +10,6 @@ import uploadIcon from "../../public/Icon/Icon/cloud-download.svg";
 import mailIcon from "../../public/Icon/Icon/Icon/envelope.svg";
 import { jeju, roboto } from "../fonts";
 import { getFormData, saveFormData } from "../utils/indexedDB";
-
 configDotenv();
 
 const AttendeeDetails = () => {
@@ -81,19 +80,6 @@ const AttendeeDetails = () => {
     }
   };
 
-  const dragAndDrop = useCallback(async (acceptedFiles: File[]) => {
-    if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      await handleUpload(file);
-    }
-  }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop: dragAndDrop,
-    accept: { "image/*": [] },
-    multiple: false,
-  });
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
@@ -114,6 +100,18 @@ const AttendeeDetails = () => {
       }, 2000);
     }
   };
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    if (acceptedFiles.length > 0) {
+      await handleUpload(acceptedFiles[0]);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "image/*": [] },
+    multiple: false,
+  });
 
   return (
     <div className="pb-4 px-3 md:w-full w-full h-full">
@@ -138,66 +136,53 @@ const AttendeeDetails = () => {
               <p className=" flex items-start justify-start  w-full ps-6">
                 Upload Profile Photo
               </p>
-
               <div className="sm:w-full sm:h-[200px] sm:bg-black/20 sm:flex sm:items-center sm:justify-center bg-transparent">
-                <div className="relative h-[240px] w-[240px] text-center  rounded-[32px] bg-secondary flex flex-col gap-4 items-center justify-center border-4 border-primary border-opacity-50 p-6">
+                <div
+                  {...getRootProps()}
+                  className={`relative h-[240px] w-[240px] text-center rounded-[32px] border-4 border-primary border-opacity-50 flex flex-col gap-4 items-center justify-center p-6 cursor-pointer ${
+                    isDragActive ? "bg-black/10 border-dashed" : "bg-secondary"
+                  }`}
+                >
+                  <input {...getInputProps()} />
+
                   {avatarUrl ? (
-                    <div
-                      {...getRootProps()}
-                      className="relative group h-[240px] w-[240px] flex items-center justify-center overflow rounded-[32px]"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {" "}
+                    <div className="relative group h-[240px] w-[240px] flex items-center justify-center rounded-[32px]">
                       <Image
                         src={avatarUrl}
                         alt="avatar"
                         width={240}
                         height={240}
-                        className="rounded-[32px] object-cover w-[240px] h-[240px] p-1"
+                        className="rounded-[32px] object-cover w-full h-full p-1"
                       />
                       <div
-                        className={`absolute inset-0 bg-black/30 transition-opacity duration-300 flex flex-col items-center justify-center rounded-[32px] 
-          ${
-            isDragActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-          }`}
-                      >
-                        <label
-                          htmlFor="imageUpload"
-                          className="cursor-pointer flex flex-col items-center justify-center w-full h-full "
-                        >
-                          <Image
-                            src={uploadIcon}
-                            alt="Change Image"
-                            height={48}
-                            width={48}
-                            className="opacity-80 hover:opacity-100 transition-opacity duration-200"
-                          />
-                          <p className=" w-40">
-                            {isDragActive
-                              ? "Drop the image here"
-                              : "Drag & drop or click to upload"}
-                          </p>
-                        </label>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <label
-                        htmlFor="imageUpload"
-                        className="flex flex-col items-center justify-center cursor-pointer gap-4"
+                        className={`absolute inset-0 bg-black/30 transition-opacity duration-300 flex flex-col items-center justify-center rounded-[32px] ${
+                          isDragActive
+                            ? "opacity-100"
+                            : "opacity-0 group-hover:opacity-100"
+                        }`}
                       >
                         <Image
                           src={uploadIcon}
-                          alt="Upload Icon"
-                          height={32}
-                          width={32}
+                          alt="Change Image"
+                          height={48}
+                          width={48}
+                          className="opacity-80 hover:opacity-100 transition-opacity duration-200"
                         />
-                        <p className="">Drag & drop or click to upload</p>
-                      </label>
+                        <p className="w-40">Drag & drop or click to upload</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-4">
+                      <Image
+                        src={uploadIcon}
+                        alt="Upload Icon"
+                        height={32}
+                        width={32}
+                      />
+                      <p>Drag & drop or click to upload</p>
                     </div>
                   )}
                   <input
-                    {...getInputProps()}
                     onChange={handleFileChange}
                     id="imageUpload"
                     type="file"
