@@ -242,7 +242,7 @@ const AttendeeDetails = () => {
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
                 placeholder="Textarea"
-                className="bg-transparent border border-ticket_box_border p-3 h-[127px] rounded-xl outline-none"
+                className="bg-transparent border border-ticket_box_border p-3 h-[127px] rounded-xl outline-none resize-none"
               />
               {errors.details && (
                 <p className="text-red-500">{errors.details}</p>
