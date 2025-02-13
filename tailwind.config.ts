@@ -19,9 +19,18 @@ export default {
         ticket_box: "var(--ticket_box)",
         ticket_box_border: "var(--ticket_box_border)",
         ticket_select: "var(--ticket_select_box)",
+        ticket_book_bg: "var(--ticket_book_bg)",
+        ticket_book_outline: "var(--ticket_book_outline)",
+        access_bg_hovered: "var(--access_hovered_bg)",
+        access_bg_selected: "var(--access_selected_bg)",
         gray: "var(--gray)",
+        gray_light: "var(--gray_light)",
+        ticket_menu_border: "var(--ticket_menu_border)",
       },
       fontFamily: {},
+      screens: {
+        sm: "480px", // Small screens (default)
+      },
     },
   },
   plugins: [],

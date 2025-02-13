@@ -19,7 +19,14 @@
     --ticket_box: #041e23;
     --ticket_box_border: #07373f;
     --ticket_select_box: #05222b;
+    --ticket_book_bg: #08343c;
+    --ticket_book_outline: #133d44;
+    --access_hovered_bg: #2c545b;
+    --access_selected_bg: #12464e;
+    --ticket_menu_border: #d5ea00;
+
     --gray: #0a0c11;
+    --gray-light: #b3b3b3;
   }
 }
 
@@ -35,4 +42,23 @@ body {
 
 input {
   @apply w-full p-3 border border-ticket_box_border rounded-xl bg-transparent outline-none;
+}
+
+.bg-gradient {
+  background: radial-gradient(
+      103.64% 57.39% at 14.02% 32.06%,
+      rgba(36, 160, 181, 0.2) 0%,
+      rgba(36, 160, 181, 0) 100%
+    )
+    rgba(10, 12, 17, 0.1);
+  backdrop-filter: blur(7px);
+}
+
+.btn_hover {
+  @apply hover:bg-access_bg_hovered hover:border-secondary_light focus:bg-access_bg_selected focus:border-secondary_light;
+}
+
+#ticket-content {
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
