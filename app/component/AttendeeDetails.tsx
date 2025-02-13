@@ -114,7 +114,7 @@ const AttendeeDetails = () => {
   });
 
   return (
-    <div className="pb-4 px-3 md:w-full w-full h-full">
+    <div className="pb-4 px-3 md:w-full w-full h-full mt-[10rem]">
       <div
         className={`${roboto.className} max-w-[700px] m-auto border-secondary border bg-ticket_box bg-opacity-40 flex flex-col gap-8 items-center p-5 sm:rounded-[40px] rounded-3xl h-full`}
       >

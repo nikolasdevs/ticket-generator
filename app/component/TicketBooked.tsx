@@ -80,7 +80,7 @@ const TicketBooked = () => {
     }, 300); // 300ms delay
   };
   return (
-    <div className=" px-3 md:w-full w-full pb-4">
+    <div className=" px-3 md:w-full w-full pb-4 mt-[10rem] ">
       <div
         className={`${roboto.className}  max-w-[700px] h-auto m-auto border-secondary border bg-ticket_box bg-opacity-40 flex flex-col gap-8 items-center sm:p-12 px-6 py-8 sm:rounded-[40px] rounded-3xl mt-8`}
       >

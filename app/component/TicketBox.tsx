@@ -46,7 +46,7 @@ const TicketBox = () => {
   };
 
   return (
-    <div className="  px-3 md:w-full w-full pb-4">
+    <div className="  px-3 md:w-full w-full h-full pb-4 mt-[10rem]">
       <div
         className={`${roboto.className} max-w-[700px] sm:h-auto m-auto border-secondary border bg-ticket_box bg-opacity-40 flex flex-col gap-8 items-center justify-center sm:p-12 p-6 sm:rounded-[40px] rounded-[32px] `}
       >

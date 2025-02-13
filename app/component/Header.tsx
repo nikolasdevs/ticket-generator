@@ -4,9 +4,9 @@ import logo from "../../public/ticz-logo.svg";
 import { jeju } from "../fonts";
 const Header = () => {
   return (
-    <div className="py-3 px-3 md:w-full ">
+    <div className=" py-3 px-3 fixed w-full z-50  backdrop-blur-sm  top-8 ">
       <div
-        className={`${jeju.className} sm:max-w-[1200px] w-full sm:h-[76px] h-[68px] m-auto  border-secondary_light border bg-header bg-opacity-40 flex items-center px-4 py-3 sm:rounded-3xl rounded-xl  `}
+        className={`${jeju.className} sm:max-w-[1200px] w-full sm:h-[76px] h-[68px] m-auto  border-secondary_light border bg-header/40  flex items-center px-4 py-3 sm:rounded-3xl rounded-xl  `}
       >
         <div className="flex justify-between items-center w-full ">
           <Image src={logo} alt="Logo" width={96} height={96} />
